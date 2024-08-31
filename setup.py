@@ -19,6 +19,7 @@ URL = 'https://github.com/facebookresearch/brainmagick'
 EMAIL = 'defossez@meta.com'
 AUTHOR = 'Alexandre Défossez'
 REQUIRES_PYTHON = '>=3.7.0'
+VERSION = '<VERSION>'
 
 HERE = Path(__file__).parent
 
@@ -33,7 +34,7 @@ except FileNotFoundError:
 
 setup(
     name=NAME,
-    version=<VERSION>,
+    version=VERSION,
     description=DESCRIPTION,
     long_description=long_description,
     long_description_content_type='text/markdown',
