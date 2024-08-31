@@ -13,4 +13,4 @@ deploy-debug:
     - sed -i "s|<VERSION>|$VERSION|g" setup.py
     - python -m build
     - export CURL_CA_BUNDLE=""
-    - TWINE_PASSWORD=${CI_JOB_TOKEN} TWINE_USERNAME=gitlab-ci-token python -m twine upload --repository-url https://192.168.1.184:50443/projects/6/packages/pypi dist/*
+    - TWINE_PASSWORD=${CI_JOB_TOKEN} TWINE_USERNAME=gitlab-ci-token python -m twine upload --repository-url https://192.168.1.184:50443/api/v4/projects/6/packages/pypi dist/*
