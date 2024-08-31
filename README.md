@@ -41,8 +41,8 @@ dynamic of the contrastive loss), see after.
 
 You can create a new conda environment and install the required dependencies
 ```shell
-conda create -n bm ipython python=3.8 -y
-conda activate bm
+conda create -n brainmagick ipython python=3.8 -y
+conda activate brainmagick
 conda install pytorch torchaudio cudatoolkit=11.3 -c pytorch -y
 pip install -U -r requirements.txt
 pip install -e .
@@ -63,7 +63,7 @@ We support four studies, as presented in Table 1 of [our paper][paper].
 As a first step, please update the following file which contains the
 paths to each study.
 ```
-bm/conf/study_path/study_paths.yaml
+brainmagick/conf/study_path/study_paths.yaml
 ```
 
 Studies are automatically downloaded the first time an experiment uses them.
@@ -155,7 +155,7 @@ to store useful templates of config.
 
 ### Grid files
 
-Larger scale experiments should be conducted within grid files. Grid files are defined in `bm/grids/` as normal python files. Define all the XP you want:
+Larger scale experiments should be conducted within grid files. Grid files are defined in `brainmagick/grids/` as normal python files. Define all the XP you want:
 
 ```python
 from ._explorers import ClipExplorer
@@ -181,7 +181,7 @@ def explorer(launcher):
         sub(more_subjects)
 ```
 
-If the file is called `bm/grids/mygrid.py`, run
+If the file is called `brainmagick/grids/mygrid.py`, run
 ```bash
 dora grid mygrid
 ```
@@ -210,7 +210,7 @@ any future changes.
 ### Grids for reproducing our paper
 
 The main results can be reproduced with `dora grid nmi.main_table`.
-Checkout the [grids folder](./bm/grids/) for the available grids,
+Checkout the [grids folder](./brainmagick/grids/) for the available grids,
 in particular the `nmi` subfolder. Running a grid requires a SLURM cluster.
 
 **Important trick:** Even if you do not have access to a SLURM cluster, you can run `dora grid nmi.main_table --dry_run --init`. This will initialize the database of experiments
@@ -244,10 +244,10 @@ on how to load the evaluations and reproduce the tables in our paper.
 ## Tests
 
 Tests are configured to run upon pushing changes (configured with CircleCI).
-To run tests manually (all tests at bm/test_*py):
+To run tests manually (all tests at brainmagick/test_*py):
 
 ```bash
-pytest bm
+pytest brainmagick
 ```
 
 To run the linter, type checker and tests you can also just run
@@ -265,7 +265,7 @@ python -m hiplot dora.hiplot.load --port=XXXX
 ```
 
 Then enter any number of grid names or XP sigs separated by ' '. Also specify the
-HiPlot Dora Explorer with `explorer=MainHP`, checkout `bm/grids/_hiplot.py` for more information.
+HiPlot Dora Explorer with `explorer=MainHP`, checkout `brainmagick/grids/_hiplot.py` for more information.
 
 
 ## License
