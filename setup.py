@@ -20,14 +20,6 @@ EMAIL = 'defossez@meta.com'
 AUTHOR = 'Alexandre Défossez'
 REQUIRES_PYTHON = '>=3.7.0'
 
-for line in open('bm/__init__.py'):
-    line = line.strip()
-    if '__version__' in line:
-        context = {}
-        exec(line, context)
-        VERSION = context['__version__']
-
-
 HERE = Path(__file__).parent
 
 # http does not work with setup.py
@@ -41,7 +33,7 @@ except FileNotFoundError:
 
 setup(
     name=NAME,
-    version=VERSION,
+    version=<VERSION>,
     description=DESCRIPTION,
     long_description=long_description,
     long_description_content_type='text/markdown',

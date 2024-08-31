@@ -1,0 +1,14 @@
+variables:
+  VERSION_MAJOR: 0
+  VERSION_MINOR: 0
+  VERSION_PATCH: ${CI_PIPELINE_ID}
+  VERSION: "$VERSION_MAJOR.$VERSION_MINOR.$CLONEZILLA_VERSION_PATCH-$VERSION_PATCH"
+
+deploy-debug:
+  stage: deploy
+  image: python:latest
+  script:
+    - pip install build twine
+    - sed -i 's/<VERSION>/${VERSION}/g' setup.py
+    - python -m build
+    - TWINE_PASSWORD=${CI_JOB_TOKEN} TWINE_USERNAME=gitlab-ci-token python -m twine upload --repository-url ${CI_API_V4_URL}/projects/6/packages/pypi dist/*
