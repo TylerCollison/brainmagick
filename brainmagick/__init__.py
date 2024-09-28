@@ -6,6 +6,6 @@
 
 # flake8: noqa
 
-from ._env import env as env
+#from ._env import env as env
 #from . import studies as studies
-from .dataset import SegmentDataset
+#from .dataset import SegmentDataset
