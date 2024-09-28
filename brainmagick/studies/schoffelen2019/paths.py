@@ -7,7 +7,7 @@
 from pathlib import Path
 import typing as tp
 from dora import to_absolute_path
-from brainmagick import env
+from ... import env
 
 
 TEST_FILENAME = "testmeg-raw.fif"  # for test only

@@ -28,7 +28,7 @@ from sklearn.preprocessing import StandardScaler
 from wordfreq import zipf_frequency as zipf
 
 from .api import list_selections
-import brainmagick
+from ... import env
 
 
 def fast_percentile(x, pct, size=10_000):
@@ -127,7 +127,7 @@ def decod(epochs, kind):
 
 def main():
     # FIXME avoid hardcoded paths
-    with brainmagick.env.temporary(cache='/checkpoint/jeanremi/brainmagick/cache'):
+    with env.temporary(cache='/checkpoint/jeanremi/brainmagick/cache'):
         repo = git.Repo(search_parent_directories=True)
         start_time = strftime("%Y-%m-%d_%H-%M-%S", gmtime())
         title = start_time + "_commit-" + repo.head.object.hexsha

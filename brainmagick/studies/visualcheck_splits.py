@@ -12,7 +12,7 @@ import git
 import mne
 import matplotlib.pyplot as plt
 
-import brainmagick
+from ... import env
 from ..viz import plot_events
 from .api import list_selections
 
@@ -32,7 +32,7 @@ def main():
 
     for dset, kwargs in dsets:
         # FIXME get rid off hard-coded cache
-        with brainmagick.env.temporary(cache='/checkpoint/jeanremi/brainmagick/cache'):
+        with env.temporary(cache='/checkpoint/jeanremi/brainmagick/cache'):
             n_recordings = 2
             recordings = list(dset.iter(**kwargs))
             for recording in recordings[:n_recordings]:

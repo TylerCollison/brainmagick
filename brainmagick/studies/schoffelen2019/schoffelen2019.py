@@ -18,7 +18,7 @@ from .. import api
 from ..download import download_donders
 from . import preproc
 from .paths import StudyPaths as StudyPaths
-from brainmagick import env
+from ... import env
 
 
 RAW_SAMPLE_RATE = 1200  # FIXME

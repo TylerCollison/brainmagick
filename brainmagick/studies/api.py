@@ -14,8 +14,7 @@ import pandas as pd
 import numpy as np
 import torch
 import julius
-import brainmagick
-from brainmagick import env
+from ... import env
 
 
 def _give_permission(filepath: tp.Optional[Path]) -> None:
@@ -371,7 +370,7 @@ def list_selections() -> tp.List[tp.Tuple[tp.Type[Recording], tp.Dict[str, tp.An
     list
         list of elements (RecordingType, subparameters)
     """
-    fp = Path(brainmagick.__file__).parent / "conf" / "selections" / "selections_definitions.yaml"
+    fp = Path(__file__).parent.parent / "conf" / "selections" / "selections_definitions.yaml"
     assert fp.exists(), f"Unknown file {fp}"
     with fp.open() as f:
         content = yaml.safe_load(f)
