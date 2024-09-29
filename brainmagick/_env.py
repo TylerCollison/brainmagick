@@ -68,9 +68,11 @@ class Env:
             content = yaml.safe_load(f)
         logger.debug(content)
         study_paths = cls._get_host_study_paths(content)
-        print(study_paths)
+        
+        for _, path in study_paths.items():
+            Path(path).mkdir(parents=True, exist_ok=True)
 
-        return {x: Path(y) for x, y in study_paths.items() if Path(y).exists()}
+        return {x: Path(y) for x, y in study_paths.items()}
 
     @contextlib.contextmanager
     def temporary_from_args(self, args: tp.Any, wipe_studies: bool = False) -> tp.Iterator[None]:
