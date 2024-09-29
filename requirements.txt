@@ -17,7 +17,7 @@ pytest
 pytest-cov>=2.6.1
 flake8
 mypy
-numpy
+numpy < 2.0.0
 types-PyYAML
 spacy<2.4.0
 wandb
