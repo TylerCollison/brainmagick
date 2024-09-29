@@ -8,7 +8,7 @@ import numpy as np
 from Levenshtein import editops
 from dora import to_absolute_path
 
-from ... import env
+from .. import env
 
 
 class StudyPaths:

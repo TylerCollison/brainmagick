@@ -14,8 +14,8 @@ import pandas as pd
 from scipy.stats import spearmanr
 
 
-from .../lib import textgrid
-from .../lib/phonemes import ph_dict
+from ...lib import textgrid
+from ...lib.phonemes import ph_dict
 from .paths import StudyPaths
 from .. import utils
 

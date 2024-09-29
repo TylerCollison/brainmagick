@@ -17,7 +17,7 @@ import pandas as pd
 
 from . import api
 from . import schoffelen2019
-from .../lib/phonemes import ph_dict
+from ..lib.phonemes import ph_dict
 
 
 FAKE_ENV = "BRAIN_MAGICK_FAKE_DATA"
