@@ -9,7 +9,7 @@
 
 from pathlib import Path
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
 NAME = 'brainmagick'
 DESCRIPTION = (
@@ -42,7 +42,7 @@ setup(
     author_email=EMAIL,
     python_requires=REQUIRES_PYTHON,
     url=URL,
-    packages=['brainmagick'],
+    packages=find_packages(),
     install_requires=REQUIRED,
     include_package_data=True,
     license='Creative Commons Attribution-NonCommercial 4.0 International',
