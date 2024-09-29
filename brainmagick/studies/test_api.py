@@ -11,7 +11,7 @@ import unittest
 from pathlib import Path
 import pytest
 import pandas as pd
-from .. import env
+from .. import _env as env
 from .. import studies
 from . import api
 from . import gwilliams2022 as gw
