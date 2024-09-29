@@ -12,7 +12,7 @@ import git
 import mne
 import matplotlib.pyplot as plt
 
-from .. import _env as env
+from .._env import env
 from ..viz import plot_events
 from .api import list_selections
 

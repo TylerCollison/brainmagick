@@ -12,7 +12,7 @@ import typing as tp
 from pathlib import Path
 from unittest import mock
 from _pytest.monkeypatch import MonkeyPatch
-from ... import _env as env
+from ..._env import env
 from . import schoffelen2019
 from . import preproc
 from .. import fake

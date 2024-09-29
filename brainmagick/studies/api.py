@@ -14,7 +14,7 @@ import pandas as pd
 import numpy as np
 import torch
 import julius
-from .. import _env as env
+from .._env import env
 
 
 def _give_permission(filepath: tp.Optional[Path]) -> None:

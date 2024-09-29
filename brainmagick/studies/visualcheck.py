@@ -28,7 +28,7 @@ from sklearn.preprocessing import StandardScaler
 from wordfreq import zipf_frequency as zipf
 
 from .api import list_selections
-from .. import _env as env
+from .._env import env
 
 
 def fast_percentile(x, pct, size=10_000):

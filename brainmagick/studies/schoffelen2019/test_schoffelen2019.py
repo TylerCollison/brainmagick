@@ -8,7 +8,7 @@ import os
 from unittest import mock, SkipTest
 from pathlib import Path
 import pandas as pd
-from ... import _env as env
+from ..._env import env
 from .. import fake
 from .. import api
 from .. import test_api
