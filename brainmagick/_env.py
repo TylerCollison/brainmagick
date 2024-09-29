@@ -68,6 +68,7 @@ class Env:
             content = yaml.safe_load(f)
         logger.debug(content)
         study_paths = cls._get_host_study_paths(content)
+        print(study_paths)
 
         return {x: Path(y) for x, y in study_paths.items() if Path(y).exists()}
 
