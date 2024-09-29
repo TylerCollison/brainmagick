@@ -13,7 +13,7 @@ from .. import _env as env
 
 class StudyPaths:
     def __init__(self, key: str) -> None:
-        folder = env.studies[key]
+        folder = env.studies()[key]
         if folder is None:
             raise RuntimeError(f"Study path for {key} is not specified")
         self.folder = to_absolute_path(folder)
