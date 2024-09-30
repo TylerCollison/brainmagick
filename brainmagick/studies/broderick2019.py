@@ -13,6 +13,7 @@ import json
 import typing as tp
 from urllib.request import urlretrieve
 from zipfile import ZipFile
+import shutil
 
 import mne
 import re
@@ -33,49 +34,43 @@ def get_paths() -> utils.StudyPaths:
 
 
 def _prepare():
+    dsets = {
+        "Cocktail Party" : "https://datadryad.org/stash/downloads/file_stream/222584",
+        "N400" : "https://datadryad.org/stash/downloads/file_stream/222585",
+        "Natural Speech - Reverse" : "https://datadryad.org/stash/downloads/file_stream/222586",
+        "Natural Speech" : "https://datadryad.org/stash/downloads/file_stream/222587",
+        "Speech in Noise" : "https://datadryad.org/stash/downloads/file_stream/222588"
+    }
     paths = get_paths()
     paths.download.mkdir(exist_ok=True, parents=True)
-    url = "http://datadryad.org/api/v2/datasets/"
-    url += "doi%253A10.5061%252Fdryad.070jc/download"
-    zip_dset = paths.download / "doi_10.5061_dryad.070jc__v3.zip"
 
-    # download public files
-    if not zip_dset.exists():
-        print("Downloading Broderick_2019 dataset...")
-        urlretrieve(url, zip_dset)
-
-    # extract
-    if not any([f.name == "N400.zip" for f in paths.download.iterdir()]):
-        print("Extracting Broderick_2019 dataset...")
-        with ZipFile(str(paths.download / zip_dset), "r") as zip:
-            zip.extractall(str(paths.download))
-    dsets = [
-        "Cocktail Party",
-        "N400",
-        "Natural Speech - Reverse",
-        "Natural Speech",
-        "Speech in Noise",
-    ]
-    for dset in dsets:
-        subfolder = paths.download / dset
-        if not subfolder.exists():
-            print(f"Extracting {dset}...")
-            with ZipFile(str(subfolder) + ".zip", "r") as zip:
+    for dset_name, dset_url in dsets:
+        zip_dset = paths.download /  f"{dset_name}.zip"
+        folder_dset = paths.download /  f"{dset_name}"
+        if not folder_dset.exists():
+            # download public files
+            print(f"Downloading Broderick_2019 {dset_name} dataset...")
+            urlretrieve(dset_url, zip_dset)
+            # extract
+            print(f"Extracting Broderick_2019 {dset_name} dataset...")
+            with ZipFile(str(zip_dset), "r") as zip:
                 zip.extractall(str(paths.download))
+            # Delete ZIP
+            shutil.rmtree(zip_dset)
 
-    # download audio files
     zip_private = paths.download / "private.zip"
-    if not zip_private.exists():
+    folder_private = paths.download / "private"
+    if not folder_private.exists():
+        # download audio files
         print("Downloading Broderick_2019 private files...")
         url = "https://ai.honu.io/papers/brainmagick/private.zip"
         urlretrieve(url, zip_private)
-
-    # extract private files
-    folder_private = paths.download / "private"
-    if not folder_private.exists():
+        # extract private files
         print("Extracting Broderick_2019 private files...")
         with ZipFile(str(zip_private), "r") as zip:
             zip.extractall(paths.download)
+        # Delete private ZIP
+        shutil.rmtree(zip_private)
 
 
 class _BroderickMetadata:
