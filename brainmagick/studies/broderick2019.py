@@ -242,7 +242,7 @@ class Broderick2019Recording(api.Recording):
         if not spacy.util.is_package(SPACY_MODEL):
             spacy.cli.download(SPACY_MODEL)
 
-        files = list((paths.download / "Natural_Speech" / "EEG").iterdir())
+        files = list((paths.download / "Natural_Speech" / "Natural Speech" / "EEG").iterdir())
         subjects = [
             int(f.name.split("Subject")[1])
             for f in files
@@ -266,6 +266,7 @@ class Broderick2019Recording(api.Recording):
         eeg_fname = (
             paths.download
             / "Natural_Speech"
+            / "Natural Speech"
             / "EEG"
             / f"Subject{self.subject_uid}"
             / f"Subject{self.subject_uid}_Run{self.run_id}.mat"
