@@ -12,6 +12,7 @@ result of run_15 around 170 s.
 import json
 import typing as tp
 import requests
+from urllib.request import urlretrieve
 from zipfile import ZipFile
 import os
 
@@ -60,8 +61,8 @@ def _prepare():
         if not folder_dset.exists():
             # download public files
             print(f"Downloading Broderick_2019 {dset_name} dataset...")
-            #urlretrieve(dset_url, zip_dset)
-            DownloadFile(dset_url, zip_dset)
+            urlretrieve(dset_url, zip_dset)
+            #DownloadFile(dset_url, zip_dset)
             # extract
             print(f"Extracting Broderick_2019 {dset_name} dataset...")
             with ZipFile(str(zip_dset), "r") as zip:
@@ -75,8 +76,8 @@ def _prepare():
         # download audio files
         print("Downloading Broderick_2019 private files...")
         url = "https://ai.honu.io/papers/brainmagick/private.zip"
-        #urlretrieve(url, zip_private)
-        DownloadFile(url, zip_private)
+        urlretrieve(url, zip_private)
+        #DownloadFile(url, zip_private)
         # extract private files
         print("Extracting Broderick_2019 private files...")
         with ZipFile(str(zip_private), "r") as zip:
