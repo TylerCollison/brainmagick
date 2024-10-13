@@ -44,7 +44,7 @@ def _prepare():
     paths = get_paths()
     paths.download.mkdir(exist_ok=True, parents=True)
 
-    for dset_name, dset_url in dsets:
+    for dset_name, dset_url in dsets.items():
         zip_dset = paths.download /  f"{dset_name}.zip"
         folder_dset = paths.download /  f"{dset_name}"
         if not folder_dset.exists():
