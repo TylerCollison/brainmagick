@@ -13,7 +13,7 @@ import json
 import typing as tp
 import requests
 from zipfile import ZipFile
-import shutil
+import os
 
 import mne
 import re
@@ -67,7 +67,7 @@ def _prepare():
             with ZipFile(str(zip_dset), "r") as zip:
                 zip.extractall(str(paths.download))
             # Delete ZIP
-            shutil.rmtree(zip_dset)
+            os.remove(zip_dset)
 
     zip_private = paths.download / "private.zip"
     folder_private = paths.download / "private"
@@ -82,7 +82,7 @@ def _prepare():
         with ZipFile(str(zip_private), "r") as zip:
             zip.extractall(paths.download)
         # Delete private ZIP
-        shutil.rmtree(zip_private)
+        os.remove(zip_private)
 
 
 class _BroderickMetadata:
