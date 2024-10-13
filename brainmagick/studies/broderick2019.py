@@ -46,9 +46,9 @@ def DownloadFile(url, filename):
 def _prepare():
     dsets = {
         #"Cocktail_Party" : " https://datadryad.org/api/v2/files/222584/download",
-        "N400" : "https://datadryad.org/api/v2/files/222585/download",
+        #"N400" : "https://datadryad.org/api/v2/files/222585/download",
         #"Natural_Speech_Reverse" : "https://datadryad.org/api/v2/files/222586/download",
-        #"Natural_Speech" : "https://datadryad.org/api/v2/files/222587/download",
+        "Natural_Speech" : "https://datadryad.org/api/v2/files/222587/download",
         #"Speech_in_Noise" : "https://datadryad.org/api/v2/files/222588/download"
     }
     paths = get_paths()
@@ -241,7 +241,7 @@ class Broderick2019Recording(api.Recording):
         if not spacy.util.is_package(SPACY_MODEL):
             spacy.cli.download(SPACY_MODEL)
 
-        files = list((paths.download / "Natural Speech" / "EEG").iterdir())
+        files = list((paths.download / "Natural_Speech" / "EEG").iterdir())
         subjects = [
             int(f.name.split("Subject")[1])
             for f in files
@@ -264,7 +264,7 @@ class Broderick2019Recording(api.Recording):
 
         eeg_fname = (
             paths.download
-            / "Natural Speech"
+            / "Natural_Speech"
             / "EEG"
             / f"Subject{self.subject_uid}"
             / f"Subject{self.subject_uid}_Run{self.run_id}.mat"
