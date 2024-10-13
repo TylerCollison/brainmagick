@@ -32,6 +32,15 @@ SPACY_MODEL = "en_core_web_md"
 def get_paths() -> utils.StudyPaths:
     return utils.StudyPaths(Broderick2019Recording.study_name())
 
+def DownloadFile(url, filename)
+    r = requests.get(url, allow_redirects=True)
+    f = open(filename, 'wb')
+    for chunk in r.iter_content(chunk_size=512 * 1024): 
+        if chunk: # filter out keep-alive new chunks
+            f.write(chunk)
+    f.close()
+    return 
+
 
 def _prepare():
     dsets = {
@@ -51,9 +60,7 @@ def _prepare():
             # download public files
             print(f"Downloading Broderick_2019 {dset_name} dataset...")
             #urlretrieve(dset_url, zip_dset)
-            req = requests.get(dset_url)
-            with open(zip_dset, 'wb') as outfile:
-                outfile.write(req.content)
+            DownloadFile(dset_url, zip_dset)
             # extract
             print(f"Extracting Broderick_2019 {dset_name} dataset...")
             with ZipFile(str(zip_dset), "r") as zip:
@@ -68,9 +75,7 @@ def _prepare():
         print("Downloading Broderick_2019 private files...")
         url = "https://ai.honu.io/papers/brainmagick/private.zip"
         #urlretrieve(url, zip_private)
-        req = requests.get(url)
-        with open(zip_private, 'wb') as outfile:
-            outfile.write(req.content)
+        DownloadFile(url, zip_private)
         # extract private files
         print("Extracting Broderick_2019 private files...")
         with ZipFile(str(zip_private), "r") as zip:
