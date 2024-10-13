@@ -69,8 +69,8 @@ def _prepare():
         url = "https://ai.honu.io/papers/brainmagick/private.zip"
         #urlretrieve(url, zip_private)
         req = requests.get(url)
-            with open(zip_private, 'wb') as outfile:
-                outfile.write(req.content)
+        with open(zip_private, 'wb') as outfile:
+            outfile.write(req.content)
         # extract private files
         print("Extracting Broderick_2019 private files...")
         with ZipFile(str(zip_private), "r") as zip:
