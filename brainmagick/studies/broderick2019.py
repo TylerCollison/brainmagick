@@ -33,7 +33,8 @@ def get_paths() -> utils.StudyPaths:
     return utils.StudyPaths(Broderick2019Recording.study_name())
 
 def DownloadFile(url, filename): 
-    r = requests.get(url, allow_redirects=True)
+    headers = {'User-Agent': 'Mozilla/5.0 (X11; CrOS x86_64 14541.0.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36'}
+    r = requests.get(url, allow_redirects=True, headers=headers)
     f = open(filename, 'wb')
     for chunk in r.iter_content(chunk_size=512 * 1024): 
         if chunk: # filter out keep-alive new chunks
