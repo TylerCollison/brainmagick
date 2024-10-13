@@ -32,7 +32,7 @@ SPACY_MODEL = "en_core_web_md"
 def get_paths() -> utils.StudyPaths:
     return utils.StudyPaths(Broderick2019Recording.study_name())
 
-def DownloadFile(url, filename)
+def DownloadFile(url, filename): 
     r = requests.get(url, allow_redirects=True)
     f = open(filename, 'wb')
     for chunk in r.iter_content(chunk_size=512 * 1024): 
