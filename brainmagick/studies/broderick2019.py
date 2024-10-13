@@ -45,11 +45,11 @@ def DownloadFile(url, filename):
 
 def _prepare():
     dsets = {
-        #"Cocktail_Party" : "https://datadryad.org/stash/downloads/file_stream/222584",
-        "N400" : "https://datadryad.org/stash/downloads/file_stream/222585",
-        #"Natural_Speech_Reverse" : "https://datadryad.org/stash/downloads/file_stream/222586",
-        #"Natural_Speech" : "https://datadryad.org/stash/downloads/file_stream/222587",
-        #"Speech_in_Noise" : "https://datadryad.org/stash/downloads/file_stream/222588"
+        #"Cocktail_Party" : " https://datadryad.org/api/v2/files/222584/download",
+        "N400" : "https://datadryad.org/api/v2/files/222585/download",
+        #"Natural_Speech_Reverse" : "https://datadryad.org/api/v2/files/222586/download",
+        #"Natural_Speech" : "https://datadryad.org/api/v2/files/222587/download",
+        #"Speech_in_Noise" : "https://datadryad.org/api/v2/files/222588/download"
     }
     paths = get_paths()
     paths.download.mkdir(exist_ok=True, parents=True)
