@@ -127,6 +127,14 @@ class Recording:
         self._arrays: tp.Dict[tp.Tuple[int, float], mne.io.RawArray] = {}
         self._events: tp.Optional[pd.DataFrame] = None
 
+        # TODO: need to add code to save this data to the cache
+        if self._cache_folder is not None:
+            for cache_file in self._cache_folder.glob("meg-sr*-hp*-raw.fif"):
+                parts = cache_file.stem.split('-')
+                sr = int(parts[1][2:])
+                hp = float(parts[2][2:])
+                self._arrays[(sr, hp)] = mne.io.read_raw_fif(str(cache_file), preload=False)
+
         if env.cache is None:
             self._cache_folder: tp.Optional[Path] = None
         else:
