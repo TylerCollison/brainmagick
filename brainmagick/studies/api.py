@@ -133,11 +133,13 @@ class Recording:
             self._cache_folder = env.cache / "studies" / self.study_name() / recording_uid
             self._cache_folder.mkdir(parents=True, exist_ok=True, mode=0o777)
 
-        for cache_file in self._cache_folder.glob(f"{self.name}-*-*-raw.fif"):
+        for cache_file in self._cache_folder.glob(f"{self.study_name()}-*-*-raw.fif"):
             parts = cache_file.stem.split('-')
             sr = int(parts[1])
             hp = float(parts[2])
             self._arrays[(sr, hp)] = mne.io.read_raw_fif(str(cache_file), preload=False)
+            if (sr == 0 and hp == 0.0):
+                self.mne_info  # populate mne info cache for raw data
 
     def empty_copy(self: R) -> R:
         """Creates a copy of the instance, without cached information
@@ -187,7 +189,7 @@ class Recording:
             raw = raw.pick_types(eeg=True, meg=True, ref_meg=True, stim=False)
             self._arrays[key] = raw
             if self._cache_folder is not None:
-                cache_file = self._cache_folder / f"{self.name}-{key[0]}-{key[1]}-raw.fif"
+                cache_file = self._cache_folder / f"{self.study_name()}-{key[0]}-{key[1]}-raw.fif"
                 raw.save(str(cache_file), overwrite=True)
                 _give_permission(cache_file)
             self.mne_info  # populate mne info cache

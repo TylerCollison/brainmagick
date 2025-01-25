@@ -33,7 +33,7 @@ class Env:
 
     def __init__(self) -> None:
         self._studies: tp.Dict[str, Path] = self.study_default_paths()
-        self.cache: tp.Optional[Path] = None  # cache for precomputation
+        self.cache: tp.Optional[Path] = self.cache_default_path()  # cache for precomputation
         # models used to create features (Eg: word embeddings)
         self.feature_models: tp.Optional[Path] = None
 
@@ -73,6 +73,18 @@ class Env:
             Path(path).mkdir(parents=True, exist_ok=True)
 
         return {x: Path(y) for x, y in study_paths.items()}
+    
+    @classmethod
+    def cache_default_path(cls) -> Path:
+        """Gets the default cache path from the config file"""
+        fp = Path(__file__).parent / "conf" / "config.yaml"
+        assert fp.exists()
+        with fp.open() as f:
+            content = yaml.safe_load(f)
+        logger.debug(content)
+        cache_path = Path(content['cache'])
+        cache_path.mkdir(parents=True, exist_ok=True)
+        return cache_path
 
     @contextlib.contextmanager
     def temporary_from_args(self, args: tp.Any, wipe_studies: bool = False) -> tp.Iterator[None]:
