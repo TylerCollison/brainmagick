@@ -127,19 +127,17 @@ class Recording:
         self._arrays: tp.Dict[tp.Tuple[int, float], mne.io.RawArray] = {}
         self._events: tp.Optional[pd.DataFrame] = None
 
-        # TODO: need to add code to save this data to the cache
-        if self._cache_folder is not None:
-            for cache_file in self._cache_folder.glob("meg-sr*-hp*-raw.fif"):
-                parts = cache_file.stem.split('-')
-                sr = int(parts[1][2:])
-                hp = float(parts[2][2:])
-                self._arrays[(sr, hp)] = mne.io.read_raw_fif(str(cache_file), preload=False)
-
         if env.cache is None:
             self._cache_folder: tp.Optional[Path] = None
         else:
             self._cache_folder = env.cache / "studies" / self.study_name() / recording_uid
             self._cache_folder.mkdir(parents=True, exist_ok=True, mode=0o777)
+
+        for cache_file in self._cache_folder.glob(f"{self.name}-*-*-raw.fif"):
+            parts = cache_file.stem.split('-')
+            sr = int(parts[1])
+            hp = float(parts[2])
+            self._arrays[(sr, hp)] = mne.io.read_raw_fif(str(cache_file), preload=False)
 
     def empty_copy(self: R) -> R:
         """Creates a copy of the instance, without cached information
@@ -188,7 +186,12 @@ class Recording:
             raw = self._load_raw()
             raw = raw.pick_types(eeg=True, meg=True, ref_meg=True, stim=False)
             self._arrays[key] = raw
+            if self._cache_folder is not None:
+                cache_file = self._cache_folder / f"{self.name}-{key[0]}-{key[1]}-raw.fif"
+                raw.save(str(cache_file), overwrite=True)
+                _give_permission(cache_file)
             self.mne_info  # populate mne info cache
+            
         return self._arrays[key]
 
     # below is automatically handled and should not be reimplemented
