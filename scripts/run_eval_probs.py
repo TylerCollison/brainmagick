@@ -15,9 +15,9 @@ import mne
 import numpy as np
 import pandas as pd
 import torch
-from bm import play
-from bm.losses import ClipLoss
-from bm.train import main
+from brainmagick import play
+from brainmagick.losses import ClipLoss
+from brainmagick.train import main
 from omegaconf import OmegaConf
 from torch.utils.data import ConcatDataset, DataLoader, TensorDataset
 
@@ -455,7 +455,7 @@ if __name__ == "__main__":
         gpus_per_node=1,
         cpus_per_task=4,
         timeout_min=60*72,
-        slurm_job_name="eval_bm",
+        slurm_job_name="eval_brainmagick",
         slurm_mem_per_gpu='500GB',
     ))
 
