@@ -4,8 +4,8 @@ include *.md
 include *.ini
 include *.toml
 include requirements.txt
-include bm/py.typed
-recursive-include bm *.yaml
-recursive-include bm *.csv
-recursive-include bm *.json
+include brainmagick/py.typed
+recursive-include brainmagick *.yaml
+recursive-include brainmagick *.csv
+recursive-include brainmagick *.json
 include brainmagick.png

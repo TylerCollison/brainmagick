@@ -4,29 +4,22 @@
 #
 # This source code is licensed under the license found in the
 # LICENSE file in the root directory of this source tree.
-# author: adefossez
+# original author: adefossez
 # Inspired from https://github.com/kennethreitz/setup.py
 
 from pathlib import Path
 
-from setuptools import setup
+from setuptools import setup, find_packages
 
-NAME = 'bm'
+NAME = 'brainmagick'
 DESCRIPTION = (
     'Framework for training deep neural network on MEG and EEG data.')
 
-URL = 'https://github.com/facebookresearch/brainmagick'
-EMAIL = 'defossez@meta.com'
-AUTHOR = 'Alexandre Défossez'
+URL = 'https://github.com/TylerCollison/brainmagick'
+EMAIL = 'tylerc2089@hotmail.com'
+AUTHOR = 'Tyler Collison'
 REQUIRES_PYTHON = '>=3.7.0'
-
-for line in open('bm/__init__.py'):
-    line = line.strip()
-    if '__version__' in line:
-        context = {}
-        exec(line, context)
-        VERSION = context['__version__']
-
+VERSION = '<VERSION>'
 
 HERE = Path(__file__).parent
 
@@ -49,7 +42,7 @@ setup(
     author_email=EMAIL,
     python_requires=REQUIRES_PYTHON,
     url=URL,
-    packages=['bm'],
+    packages=find_packages(),
     install_requires=REQUIRED,
     include_package_data=True,
     license='Creative Commons Attribution-NonCommercial 4.0 International',
