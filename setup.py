@@ -19,7 +19,7 @@ URL = 'https://github.com/TylerCollison/brainmagick'
 EMAIL = 'tylerc2089@hotmail.com'
 AUTHOR = 'Tyler Collison'
 REQUIRES_PYTHON = '>=3.7.0'
-VERSION = '0.0.0'
+VERSION = '<VERSION>'
 
 HERE = Path(__file__).parent
 

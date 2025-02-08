@@ -22,3 +22,4 @@ resources
 draft_notebooks/
 submitit_*/
 .devcontainer/
+/test.py
